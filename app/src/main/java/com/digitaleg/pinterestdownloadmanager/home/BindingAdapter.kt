@@ -2,6 +2,7 @@ package com.digitaleg.pinterestdownloadmanager.home
 
 import android.databinding.BindingAdapter
 import android.graphics.Bitmap
+import android.support.v4.widget.SwipeRefreshLayout
 import android.util.Log
 import android.widget.GridView
 import android.widget.ImageView
@@ -19,8 +20,8 @@ class BindingAdapter {
         @JvmStatic
         @BindingAdapter("imageUrl", requireAll = true)
         fun setBitmap(imageView: ImageView, imageUrl: String?) {
-            if (imageUrl != null)
-                LoadManager(imageUrl, FileType.IMAGE, imageView.context,
+            if (imageUrl != null) {
+                val loadManager = LoadManager(imageUrl, FileType.IMAGE, imageView.context,
                         object : LoadObserver {
                             override fun loaded(t: Any) {
                                 if (t is Bitmap)
@@ -31,15 +32,21 @@ class BindingAdapter {
                                 Log.d("SET_BITMAP", "cannot get image, cause: $e")
                             }
                         })
+
+//                loadManager.cancelLoad()
+            }
         }
 
-//        @JvmStatic
-////        @BindingAdapter("recyclerView")
-////        fun swipeListener(swipeRefreshLayout: SwipeRefreshLayout, recyclerView: RecyclerView) {
-////            swipeRefreshLayout.setOnRefreshListener {
-////
-////            }
-////        }
+        @JvmStatic
+        @BindingAdapter("gridViewToRefresh", "listToRefresh", requireAll = true)
+        fun swipeListener(swipeRefreshLayout: SwipeRefreshLayout, gridView: GridView, cardList: ArrayList<HomeCardModel>) {
+            swipeRefreshLayout.setOnRefreshListener {
+//                gridView.adapter = null
+////                gridView.adapter = HomeCardAdapter(cardList!!)
+//
+//                swipeRefreshLayout.isRefreshing = false
+            }
+        }
 
         @JvmStatic
         @BindingAdapter("adapter", "cardList", requireAll = true)

@@ -5,8 +5,14 @@ import com.digitaleg.pinterestdownloadmanager.home.model.HomeCardModel
 
 class HomeCardViewModel(homeCardModel: HomeCardModel) : BaseObservable() {
 
-    var TAG = this@HomeCardViewModel.toString()
+    val imageUrl: String = {
 
-    val imageUrl = homeCardModel.urls!!.regular!!
+        try {
+            homeCardModel.urls!!.regular!!
+        } catch (e: Exception) {
+            ""
+        }
+    }.invoke()
+
 
 }

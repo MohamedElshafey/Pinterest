@@ -30,6 +30,10 @@ class HomeViewModel(retrofit: Retrofit) : BaseObservable() {
 
                     if (it != null) {
                         cardList = it
+                        cardList!!.addAll(it)
+                        cardList!!.addAll(it)
+                        cardList!!.addAll(it)
+                        cardList!!.addAll(it)
 
                         cardAdapter = HomeCardAdapter(cardList!!)
                         this@HomeViewModel.notifyChange()

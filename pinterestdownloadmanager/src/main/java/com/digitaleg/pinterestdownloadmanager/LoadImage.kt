@@ -5,11 +5,19 @@ import android.os.AsyncTask
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
-class LoadImage(url: String, loadObserver: LoadObserver) {
+class LoadImage(url: String, loadObserver: LoadObserver) : LoadType {
+
+    override fun cancel() {
+        loadImageAsync.cancel(true);
+    }
+
+    var loadImageAsync: LoadImageAsync
 
     init {
 
-        LoadImageAsync(url, loadObserver).execute()
+        loadImageAsync = LoadImageAsync(url, loadObserver)
+
+        loadImageAsync.execute()
 
     }
 

@@ -4,18 +4,25 @@ import android.content.Context
 
 class LoadManagerFactory(context: Context?, fileType: FileType, url: String, loadObserver: LoadObserver) {
 
+    private lateinit var loadTypeInterface: LoadType
+
     init {
 
         if (fileType == FileType.IMAGE) {
 
-            LoadImage(url, loadObserver)
+            loadTypeInterface = LoadImage(url, loadObserver)
 
         } else if (fileType == FileType.JSON) {
 
             if (context == null)
-                throw java.lang.Exception("queue must be not null")
+                throw Exception("queue must be not null")
 
-            LoadJSON(context, url, loadObserver)
+            loadTypeInterface = LoadJSON(context, url, loadObserver)
         }
     }
+
+    fun cancel() {
+        loadTypeInterface.cancel()
+    }
+
 }

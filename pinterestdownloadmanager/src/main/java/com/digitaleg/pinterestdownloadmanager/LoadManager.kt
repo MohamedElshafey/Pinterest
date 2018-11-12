@@ -4,6 +4,8 @@ import android.content.Context
 
 class LoadManager(url: String, fileType: FileType, context: Context?, loadObserver: LoadObserver) {
 
+    private var loadManagerFactory: LoadManagerFactory? = null
+
     init {
 
         val cachedObject = CacheManager.lruCache.get(url)
@@ -14,8 +16,12 @@ class LoadManager(url: String, fileType: FileType, context: Context?, loadObserv
 
         } else {
 
-            LoadManagerFactory(context, fileType, url, loadObserver)
+            loadManagerFactory = LoadManagerFactory(context, fileType, url, loadObserver)
 
         }
+    }
+
+    fun cancelLoad() {
+        loadManagerFactory!!.cancel()
     }
 }
