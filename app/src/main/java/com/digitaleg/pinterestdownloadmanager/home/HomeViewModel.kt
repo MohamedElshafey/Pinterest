@@ -3,6 +3,7 @@ package com.digitaleg.pinterestdownloadmanager.home
 import android.databinding.BaseObservable
 import android.util.Log
 import com.digitaleg.pinterestdownloadmanager.RetrofitService
+import com.digitaleg.pinterestdownloadmanager.home.card.HomeCardAdapter
 import com.digitaleg.pinterestdownloadmanager.home.model.HomeCardModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

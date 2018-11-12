@@ -1,8 +1,8 @@
 package com.digitaleg.pinterestdownloadmanager
 
-interface LoadObserver<T, E> {
+interface LoadObserver {
 
-    fun loaded(t: T)
+    fun loaded(t: Any)
 
-    fun error(e: E)
+    fun error(e: Any)
 }

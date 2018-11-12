@@ -1,4 +1,4 @@
-package com.digitaleg.pinterestdownloadmanager.home
+package com.digitaleg.pinterestdownloadmanager.home.card
 
 import android.annotation.SuppressLint
 import android.databinding.DataBindingUtil
@@ -28,7 +28,7 @@ class HomeCardAdapter(var movies: ArrayList<HomeCardModel>) : BaseAdapter() {
 
         val movie = movies[i]
 
-        binding.homeItemViewModel = HomeItemViewModel(movie)
+        binding.homeItemViewModel = HomeCardViewModel(movie)
 
         return binding.root
     }

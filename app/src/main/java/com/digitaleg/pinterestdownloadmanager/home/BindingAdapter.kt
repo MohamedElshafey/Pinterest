@@ -2,8 +2,13 @@ package com.digitaleg.pinterestdownloadmanager.home
 
 import android.databinding.BindingAdapter
 import android.graphics.Bitmap
+import android.util.Log
 import android.widget.GridView
 import android.widget.ImageView
+import com.digitaleg.pinterestdownloadmanager.FileType
+import com.digitaleg.pinterestdownloadmanager.LoadManager
+import com.digitaleg.pinterestdownloadmanager.LoadObserver
+import com.digitaleg.pinterestdownloadmanager.home.card.HomeCardAdapter
 import com.digitaleg.pinterestdownloadmanager.home.model.HomeCardModel
 
 class BindingAdapter {
@@ -12,9 +17,20 @@ class BindingAdapter {
 
 
         @JvmStatic
-        @BindingAdapter("bitmap", requireAll = true)
-        fun setBitmap(imageView: ImageView, bitmap: Bitmap?) {
-            imageView.setImageBitmap(bitmap)
+        @BindingAdapter("imageUrl", requireAll = true)
+        fun setBitmap(imageView: ImageView, imageUrl: String?) {
+            if (imageUrl != null)
+                LoadManager(imageUrl, FileType.IMAGE, imageView.context,
+                        object : LoadObserver {
+                            override fun loaded(t: Any) {
+                                if (t is Bitmap)
+                                    imageView.setImageBitmap(t)
+                            }
+
+                            override fun error(e: Any) {
+                                Log.d("SET_BITMAP", "cannot get image, cause: $e")
+                            }
+                        })
         }
 
 //        @JvmStatic

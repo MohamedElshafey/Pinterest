@@ -19,7 +19,6 @@ class HomeActivity : AppCompatActivity() {
 
         (application as App).networkComponent?.inject(this)
 
-
         val binding = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
 
         binding.homeVM = HomeViewModel(retrofit)
