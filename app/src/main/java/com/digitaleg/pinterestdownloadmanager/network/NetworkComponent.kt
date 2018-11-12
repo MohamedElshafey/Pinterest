@@ -1,4 +1,4 @@
-package com.digitaleg.pinterestdownloadmanager.dagger
+package com.digitaleg.pinterestdownloadmanager.network
 
 import com.digitaleg.pinterestdownloadmanager.home.HomeActivity
 import dagger.Component

@@ -1,4 +1,4 @@
-package com.digitaleg.pinterestdownloadmanager.dagger
+package com.digitaleg.pinterestdownloadmanager.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

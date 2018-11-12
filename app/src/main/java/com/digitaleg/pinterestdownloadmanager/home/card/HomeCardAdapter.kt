@@ -14,11 +14,12 @@ import com.digitaleg.pinterestdownloadmanager.home.model.HomeCardModel
 /**
  * Created by Mohamed Elshafey on 4/18/2018.
  */
-class HomeCardAdapter(var movies: ArrayList<HomeCardModel>) : BaseAdapter() {
+class HomeCardAdapter(var cardList: List<HomeCardModel>) : BaseAdapter() {
 
-    fun updateData(movies: ArrayList<HomeCardModel>?) {
-        this.movies = movies!!;
-        super.notifyDataSetChanged()
+    fun updateData(cards: List<HomeCardModel>?) {
+        cardList.toMutableSet().clear()
+        cardList = cards!!
+        notifyDataSetChanged()
     }
 
     @SuppressLint("ViewHolder")
@@ -26,9 +27,9 @@ class HomeCardAdapter(var movies: ArrayList<HomeCardModel>) : BaseAdapter() {
         val inflater: LayoutInflater = LayoutInflater.from(viewGroup!!.context)
         val binding: HomeItemBinding = DataBindingUtil.inflate(inflater, R.layout.home_item, viewGroup, false)
 
-        val movie = movies[i]
+        val card = cardList[i]
 
-        binding.homeItemViewModel = HomeCardViewModel(movie)
+        binding.homeItemViewModel = HomeCardViewModel(card)
 
         return binding.root
     }
@@ -42,7 +43,7 @@ class HomeCardAdapter(var movies: ArrayList<HomeCardModel>) : BaseAdapter() {
     }
 
     override fun getCount(): Int {
-        return movies.size
+        return cardList.size
     }
 
 }

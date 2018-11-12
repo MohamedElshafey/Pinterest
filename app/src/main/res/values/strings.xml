@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PinterestDownloadManager</string>
+    <string name="profile_picture">profile picture</string>
+    <string name="cover_image">cover image</string>
 </resources>

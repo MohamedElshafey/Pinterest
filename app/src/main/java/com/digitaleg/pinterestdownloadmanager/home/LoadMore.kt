@@ -1,4 +1,4 @@
-package com.digitaleg.pinterestdownloadmanager
+package com.digitaleg.pinterestdownloadmanager.home
 
 /**
  * Created by Mohamed Elshafey on 4/22/2018.

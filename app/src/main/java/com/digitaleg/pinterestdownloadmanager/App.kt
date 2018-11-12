@@ -1,9 +1,9 @@
 package com.digitaleg.pinterestdownloadmanager
 
 import android.app.Application
-import com.digitaleg.pinterestdownloadmanager.dagger.DaggerNetworkComponent
-import com.digitaleg.pinterestdownloadmanager.dagger.NetworkComponent
-import com.digitaleg.pinterestdownloadmanager.dagger.NetworkModule
+import com.digitaleg.pinterestdownloadmanager.network.DaggerNetworkComponent
+import com.digitaleg.pinterestdownloadmanager.network.NetworkComponent
+import com.digitaleg.pinterestdownloadmanager.network.NetworkModule
 
 /**
  * Created by Mohamed Elshafey on 4/16/2018.

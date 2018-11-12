@@ -2,7 +2,7 @@ package com.digitaleg.pinterestdownloadmanager.home
 
 import android.databinding.BaseObservable
 import android.util.Log
-import com.digitaleg.pinterestdownloadmanager.RetrofitService
+import com.digitaleg.pinterestdownloadmanager.network.RetrofitService
 import com.digitaleg.pinterestdownloadmanager.home.card.HomeCardAdapter
 import com.digitaleg.pinterestdownloadmanager.home.model.HomeCardModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,6 +20,25 @@ class HomeViewModel(retrofit: Retrofit) : BaseObservable() {
 
     var cardAdapter: HomeCardAdapter? = null
 
+    val loadMore = object : LoadMore {
+        override fun load(page: Int) {
+            if (cardList == null)
+                return
+
+            val toIndex = {
+                if (cardList!!.size > page * 10)
+                    page * 10
+                else
+                    cardList!!.size
+            }.invoke()
+
+            if (page * 10 < cardList!!.size) {
+                val miniList: MutableList<HomeCardModel> = cardList!!.subList(0, toIndex)
+                cardAdapter!!.updateData(miniList)
+            }
+        }
+    }
+
     init {
         val retrofitService = retrofit.create(RetrofitService::class.java)
 
@@ -30,12 +49,17 @@ class HomeViewModel(retrofit: Retrofit) : BaseObservable() {
 
                     if (it != null) {
                         cardList = it
-                        cardList!!.addAll(it)
-                        cardList!!.addAll(it)
-                        cardList!!.addAll(it)
-                        cardList!!.addAll(it)
 
-                        cardAdapter = HomeCardAdapter(cardList!!)
+                        val toIndex = {
+                            if (cardList!!.size >= 10)
+                                10
+                            else
+                                cardList!!.size
+                        }.invoke()
+
+                        val miniList: MutableList<HomeCardModel> = cardList!!.subList(0, toIndex)
+
+                        cardAdapter = HomeCardAdapter(miniList)
                         this@HomeViewModel.notifyChange()
                     }
 

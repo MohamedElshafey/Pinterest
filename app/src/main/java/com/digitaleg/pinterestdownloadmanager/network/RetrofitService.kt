@@ -1,4 +1,4 @@
-package com.digitaleg.pinterestdownloadmanager
+package com.digitaleg.pinterestdownloadmanager.network
 
 import com.digitaleg.pinterestdownloadmanager.home.model.HomeCardModel
 import io.reactivex.Observable
