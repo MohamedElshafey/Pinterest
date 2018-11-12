@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="homeVM"
+            type="com.digitaleg.pinterestdownloadmanager.home.HomeViewModel" />
+
+    </data>
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:gravity="center"
+            android:horizontalSpacing="6dp"
+            android:numColumns="@integer/grid_columns"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="6dp"
+            app:adapter="@{homeVM.cardAdapter}"
+            app:cardList="@{homeVM.cardList}" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</layout>
